@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class Main {
 
-    private static final String PROPERTIES_FILE_PATH = "resources/OAuth.properties";
+    private static final String PROPERTIES_FILE_PATH = "OAuth.properties";
     private static final String[] PROPERTIES_LIST = {"OAuthConsumerKey",
                                                         "OAuthConsumerSecret",
                                                         "OAuthAccessToken",
