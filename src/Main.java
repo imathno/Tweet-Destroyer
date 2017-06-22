@@ -28,7 +28,7 @@ public class Main {
             System.err.println(e);
             System.exit(0);
         }
-        if (!checkCredentialsIsSet(properties)) {
+        if (!checkIfCredentialsAreSet(properties)) {
             System.err.println("Credentials aren't set");
             System.exit(0);
         }
@@ -38,11 +38,10 @@ public class Main {
                                                             properties.getProperty("OAuthAccessSecret"));
         tweetDestroyer.build();
         try {
-            tweetDestroyer.deleteTweets(300);
+            System.out.println("Tweets Deleted: " + tweetDestroyer.deleteTweets());
         } catch (TwitterException e) {
             e.printStackTrace();
         }
-        System.out.println("Deleted Tweets:" + tweetDestroyer.getTweetsDeleted());
     }
 
     private static void createFile(String path) {
@@ -63,7 +62,7 @@ public class Main {
         }
     }
 
-    private static boolean checkCredentialsIsSet(Properties properties) {
+    private static boolean checkIfCredentialsAreSet(Properties properties) {
         for (String property : PROPERTIES_LIST) {
             if (properties.get(property).equals("not_set")) {
                 return false;

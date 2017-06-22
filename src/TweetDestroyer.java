@@ -12,7 +12,6 @@ public class TweetDestroyer {
 
     private Twitter twitterAccount;
     private boolean built = false;
-    private int tweetsDeleted;
 
     public TweetDestroyer(String consumerKeyOAuth, String consumerSecretOAuth,
                           String accessTokenOAuth, String accessSecretOAuth) {
@@ -34,12 +33,13 @@ public class TweetDestroyer {
         built = true;
     }
 
-    public boolean deleteTweets(int howMany) throws TwitterException {
+    public int deleteTweets() throws TwitterException {
+        int tweetsDeleted = 0;
         if (!built) {
-            return false;
+            return 0;
         }
         Paging paging = new Paging();
-        paging.count(howMany);
+        paging.count(1000);
 
         List<Status> statuses = twitterAccount.getUserTimeline(twitterAccount.getId(), paging);
         if (statuses != null) {
@@ -48,10 +48,7 @@ public class TweetDestroyer {
                 tweetsDeleted++;
             }
         }
-        if (tweetsDeleted == howMany) {
-            return true;
-        }
-        return false;
+        return tweetsDeleted;
     }
 
     public int getTweetsDeleted() {
