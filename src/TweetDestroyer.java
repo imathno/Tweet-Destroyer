@@ -50,8 +50,4 @@ public class TweetDestroyer {
         }
         return tweetsDeleted;
     }
-
-    public int getTweetsDeleted() {
-        return tweetsDeleted;
-    }
 }
